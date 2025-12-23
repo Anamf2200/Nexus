@@ -7,7 +7,7 @@ import { Badge } from '../../components/ui/Badge';
 import { CollaborationRequestCard } from '../../components/collaboration/CollaborationRequestCard';
 import { InvestorCard } from '../../components/investor/InvestorCard';
 import { useGetProfileQuery } from '../../store/user/userApi';
-import { CollaborationRequest } from '../../types';
+import { CollaborationRequest } from '../..';
 import { getRequestsForEntrepreneur } from '../../data/collaborationRequests';
 import { investors } from '../../data/users';
 

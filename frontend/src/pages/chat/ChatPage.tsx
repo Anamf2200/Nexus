@@ -7,10 +7,13 @@ import { Input } from '../../components/ui/Input';
 import { ChatMessage } from '../../components/chat/ChatMessage';
 import { ChatUserList } from '../../components/chat/ChatUserList';
 import { useAuth } from '../../context/AuthContext';
-import { Message } from '../../types';
+import { Message } from '../..';
 import { findUserById } from '../../data/users';
 import { getMessagesBetweenUsers, sendMessage, getConversationsForUser } from '../../data/messages';
 import { MessageCircle } from 'lucide-react';
+import VideoCall from '../../components/video/VideoCall';
+import { startCall } from '../../store/call/callSlice';
+import { useDispatch, UseDispatch } from 'react-redux';
 
 export const ChatPage: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -19,8 +22,12 @@ export const ChatPage: React.FC = () => {
   const [newMessage, setNewMessage] = useState('');
   const [conversations, setConversations] = useState<any[]>([]);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
+  const dispatch=useDispatch()
+
   
   const chatPartner = userId ? findUserById(userId) : null;
+        const roomId = `${currentUser?.id}-${userId}`;
+
   
   useEffect(() => {
     // Load conversations
@@ -45,6 +52,7 @@ export const ChatPage: React.FC = () => {
     e.preventDefault();
     
     if (!newMessage.trim() || !currentUser || !userId) return;
+
     
     const message = sendMessage({
       senderId: currentUser.id,
@@ -106,6 +114,8 @@ export const ChatPage: React.FC = () => {
                   size="sm"
                   className="rounded-full p-2"
                   aria-label="Video call"
+                    onClick={() => dispatch(startCall(roomId))}
+
                 >
                   <Video size={18} />
                 </Button>

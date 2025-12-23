@@ -24,6 +24,11 @@ export class UserController {
         return await this.userService.updateUser(req.user.id,body)
     }
 
+    @Get()
+async getAllUsers() {
+  return this.userService.getAllUser(); // return id, name, email
+}
+
     @UseGuards(JWTAuthGuard,RolesGuard)
     @Roles('investor')
     @Get('investor')

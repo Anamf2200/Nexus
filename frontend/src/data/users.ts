@@ -1,4 +1,4 @@
-import { Entrepreneur, Investor } from '../types';
+import { Entrepreneur, Investor } from '..';
 
 export const entrepreneurs: Entrepreneur[] = [
   {

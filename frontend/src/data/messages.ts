@@ -1,4 +1,4 @@
-import { Message, ChatConversation } from '../types';
+import { Message, ChatConversation } from '..';
 
 export const messages: Message[] = [
   // Conversation between Sarah (e1) and Michael (i1)

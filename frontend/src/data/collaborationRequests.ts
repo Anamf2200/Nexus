@@ -1,4 +1,4 @@
-import { CollaborationRequest } from '../types';
+import { CollaborationRequest } from '..';
 
 export const collaborationRequests: CollaborationRequest[] = [
   {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Calendar } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { 
   Home, Building2, CircleDollarSign, Users, MessageCircle, 
@@ -36,14 +37,51 @@ export const Sidebar: React.FC = () => {
   if (!user) return null;
   
   // Define sidebar items based on user role
-  const entrepreneurItems = [
-    { to: '/dashboard/entrepreneur', icon: <Home size={20} />, text: 'Dashboard' },
-    { to: '/profile/entrepreneur/' + user.id, icon: <Building2 size={20} />, text: 'My Startup' },
-    { to: '/investors', icon: <CircleDollarSign size={20} />, text: 'Find Investors' },
-    { to: '/messages', icon: <MessageCircle size={20} />, text: 'Messages' },
-    { to: '/notifications', icon: <Bell size={20} />, text: 'Notifications' },
-    { to: '/documents', icon: <FileText size={20} />, text: 'Documents' },
-  ];
+ const entrepreneurItems = [
+  { 
+    to: '/dashboard/entrepreneur', 
+    icon: <Home size={20} />, 
+    text: 'Dashboard' 
+  },
+
+  { 
+    to: '/profile/entrepreneur/' + user.id, 
+    icon: <Building2 size={20} />, 
+    text: 'My Startup' 
+  },
+
+  // ✅ NEW: My Meetings
+  { 
+    to: '/mymeeting', 
+    icon: <Calendar size={20} />, 
+    text: 'My Meetings' 
+  },
+
+  { 
+    to: '/investors', 
+    icon: <CircleDollarSign size={20} />, 
+    text: 'Find Investors' 
+  },
+
+  { 
+    to: '/messages', 
+    icon: <MessageCircle size={20} />, 
+    text: 'Messages' 
+  },
+
+  { 
+    to: '/notifications', 
+    icon: <Bell size={20} />, 
+    text: 'Notifications' 
+  },
+
+  { 
+    to: '/documents', 
+    icon: <FileText size={20} />, 
+    text: 'Documents' 
+  },
+];
+
   
   const investorItems = [
     { to: '/dashboard/investor', icon: <Home size={20} />, text: 'Dashboard' },
@@ -52,6 +90,13 @@ export const Sidebar: React.FC = () => {
     { to: '/messages', icon: <MessageCircle size={20} />, text: 'Messages' },
     { to: '/notifications', icon: <Bell size={20} />, text: 'Notifications' },
     { to: '/deals', icon: <FileText size={20} />, text: 'Deals' },
+        { to: '/documents', icon: <FileText size={20} />, text: 'Documents' },
+
+    { 
+    to: '/mymeeting', 
+    icon: <Calendar size={20} />, 
+    text: 'My Meetings' 
+  },
   ];
   
   const sidebarItems = user.role === 'entrepreneur' ? entrepreneurItems : investorItems;

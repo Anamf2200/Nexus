@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
-import { ChatConversation } from '../../types';
+import { ChatConversation } from '../..';
 import { Avatar } from '../ui/Avatar';
 import { Badge } from '../ui/Badge';
 import { findUserById } from '../../data/users';

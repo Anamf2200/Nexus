@@ -1,5 +1,6 @@
-import { User } from "../../types";
+import { User } from "../..";
 import { api } from "../api";
+
 
 
 
@@ -18,10 +19,15 @@ export const userApi = api.injectEndpoints({
       }),
 
     }),
+
+     getAllUsers: builder.query<User[], void>({
+      query: () => '/user', // fetch all users
+    }),
   }),
 });
 
 export const {
   useGetProfileQuery,
   useUpdateProfileMutation,
+  useGetAllUsersQuery
 } = userApi;

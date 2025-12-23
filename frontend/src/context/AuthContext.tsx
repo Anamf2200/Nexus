@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { RootState } from '../store/store';
 import { logout as logoutAction, setCredentials } from '../store/slices/authSlice';
 import { useLoginMutation,useRegisterMutation } from '../store/auth/authApi';
-import { AuthContextType, User, UserRole } from '../types';
+import { AuthContextType, User, UserRole } from '..';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

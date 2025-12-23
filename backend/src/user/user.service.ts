@@ -20,4 +20,10 @@ async updateUser(id:string,data:UpdateProfileDto):Promise<User |null>{
 async getProfile(id:string):Promise<User>{
 return await this.userModel.findById(id).select('-password')
 }
+
+async getAllUser():Promise<User[]>{
+
+    return await this.userModel.find()
+}
+
 }

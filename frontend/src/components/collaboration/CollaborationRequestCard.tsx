@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check, X, MessageCircle } from 'lucide-react';
-import { CollaborationRequest } from '../../types';
+import { CollaborationRequest } from '../..';
 import { Card, CardBody, CardFooter } from '../ui/Card';
 import { Avatar } from '../ui/Avatar';
 import { Badge } from '../ui/Badge';

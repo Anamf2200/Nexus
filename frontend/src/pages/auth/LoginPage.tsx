@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { User, CircleDollarSign, Building2, LogIn, AlertCircle } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
-import { UserRole } from '../../types';
+import { UserRole } from '../..';
 import { useLoginMutation } from '../../store/auth/authApi';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../../store/slices/authSlice';

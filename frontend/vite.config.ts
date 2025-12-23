@@ -6,5 +6,7 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react'],
+        include: ['pdfjs-dist/build/pdf.worker.min.js']
+
   },
 });

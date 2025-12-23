@@ -7,7 +7,7 @@ import { Input } from '../../components/ui/Input';
 import { Badge } from '../../components/ui/Badge';
 import { EntrepreneurCard } from '../../components/entrepreneur/EntrepreneurCard';
 import { useGetProfileQuery } from '../../store/user/userApi';
-import { Entrepreneur } from '../../types';
+import { Entrepreneur } from '../..';
 import { entrepreneurs } from '../../data/users';
 import { getRequestsFromInvestor } from '../../data/collaborationRequests';
 

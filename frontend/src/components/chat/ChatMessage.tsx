@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import { Message } from '../../types';
+import { Message } from '../..';
 import { Avatar } from '../ui/Avatar';
 import { findUserById } from '../../data/users';
 

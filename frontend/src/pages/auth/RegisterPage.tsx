@@ -4,7 +4,7 @@ import { User, Mail, Lock, CircleDollarSign, Building2, AlertCircle } from 'luci
 // import { useAuth } from '../../context/AuthContext';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
-import { UserRole } from '../../types';
+import { UserRole } from '../..';
 import { useRegisterMutation } from '../../store/auth/authApi';
 import { setCredentials } from '../../store/slices/authSlice';
 import { useDispatch } from 'react-redux';

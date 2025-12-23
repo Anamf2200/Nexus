@@ -29,10 +29,22 @@ import { DealsPage } from './pages/deals/DealsPage';
 
 // Chat Pages
 import { ChatPage } from './pages/chat/ChatPage';
+import CreateMeeting from './meeting/CreateMeeting';
+import MyMeetings from './meeting/MyMeetingpage';
+import CalendarView from './meeting/CalenderView';
+import { useSelector } from 'react-redux';
+import { RootState } from './store/store';
+import VideoCall from './components/video/VideoCall';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 function App() {
+    const { inCall, roomId } = useSelector((state: RootState) => state.call);
+
   return (
     <AuthProvider>
+            {inCall && roomId && <VideoCall roomId={roomId} />}
+
       <Router>
         <Routes>
           {/* Authentication Routes */}
@@ -44,6 +56,10 @@ function App() {
   <Route path="entrepreneur" element={<EntrepreneurDashboard />} />
   <Route path="investor" element={<InvestorDashboard />} />
 </Route>
+<Route path='createmeeting'element={<CreateMeeting />}/>
+<Route path='mymeeting'element={<MyMeetings />}/>
+<Route path="/meetings/calendar" element={<CalendarView />} />
+
 
 
           
