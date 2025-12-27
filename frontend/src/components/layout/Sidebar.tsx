@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Calendar } from 'lucide-react';
+import { Calendar,Wallet,DollarSign } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { 
   Home, Building2, CircleDollarSign, Users, MessageCircle, 
   Bell, FileText, Settings, HelpCircle
 } from 'lucide-react';
+import WalletPage from '../../payments/WalletPage';
 
 interface SidebarItemProps {
   to: string;
@@ -80,6 +81,19 @@ export const Sidebar: React.FC = () => {
     icon: <FileText size={20} />, 
     text: 'Documents' 
   },
+
+   { 
+    to: '/payments', 
+    icon: <Wallet size={20} />, 
+    text: 'Payments' 
+  },
+
+
+    { 
+    to: '/transactionhistory', 
+    icon: <DollarSign size={20} />, 
+    text: 'History' 
+  },
 ];
 
   
@@ -96,6 +110,17 @@ export const Sidebar: React.FC = () => {
     to: '/mymeeting', 
     icon: <Calendar size={20} />, 
     text: 'My Meetings' 
+  },
+
+     { 
+    to: '/payments', 
+    icon: <Wallet size={20} />, 
+    text: 'Payments' 
+  },
+   { 
+    to: '/transactionhistory', 
+    icon: <DollarSign size={20} />, 
+    text: 'History' 
   },
   ];
   

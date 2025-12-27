@@ -41,6 +41,18 @@ investmentHistory:string[]
 preferences:string[]
 
 
+@Prop()
+otp?: string;
+
+@Prop()
+otpExpiresAt?: Date;
+
+@Prop({ default: false })
+isOtpVerified?: boolean;
+
+@Prop()
+  profileImage?: string; 
+
 }
 
 export const userSchema=SchemaFactory.createForClass(User)

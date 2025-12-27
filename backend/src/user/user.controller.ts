@@ -1,10 +1,14 @@
-import { Body, Controller, Get, Request, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Request, Put, UseGuards, UseInterceptors, UploadedFile, Patch, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './schema/user_schema';
 import { UpdateProfileDto } from './dto/updateUser_dto';
 import { JWTAuthGuard } from 'src/guards/jwt-guard';
 import { RolesGuard } from 'src/guards/roles-guard';
 import { Roles } from 'src/roles/role-decorator';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { join } from 'path';
+import { ChangePasswordDto } from './dto/ChangePasswordDto';
 
 
 @UseGuards(JWTAuthGuard)
@@ -43,4 +47,41 @@ async getAllUsers() {
     async entrepreneur(){
         return "I am entrepreneur"
     }
+
+
+    @Put('me/avatar')
+@UseInterceptors(
+  FileInterceptor('image', {
+    storage: diskStorage({
+      destination: join('./uploads', 'profile'),
+      filename: (_, file, cb) => {
+        const ext = file.originalname.split('.').pop();
+        cb(null, `${Date.now()}-${Math.random()}.${ext}`);
+      },
+    }),
+    fileFilter: (_, file, cb) => {
+      if (!file.mimetype.startsWith('image/')) {
+        return cb(new Error('Only images allowed'), false);
+      }
+      cb(null, true);
+    },
+    limits: { fileSize: 2 * 1024 * 1024 }, // 2MB
+  }),
+)
+async uploadAvatar(
+  @Request() req,
+  @UploadedFile() file: Express.Multer.File,
+) {
+  const relativePath = `profile/${file.filename}`;
+  return this.userService.updateProfileImage(req.user.id, relativePath);
+}
+
+
+@Patch('change-password')
+changePassword(
+  @Req() req,
+  @Body() dto: ChangePasswordDto,
+) {
+  return this.userService.changePassword(req.user.id, dto);
+}
 }

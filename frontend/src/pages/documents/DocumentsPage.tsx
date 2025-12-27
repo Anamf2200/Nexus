@@ -11,7 +11,7 @@ import { Badge } from '../../components/ui/Badge';
 import { PdfPreview } from '../../components/PDFpreview';
 
 export const DocumentsPage: React.FC = () => {
-  const { data: documents, isLoading } = useGetUserDocumentsQuery();
+  const { data: documents, isLoading,isError } = useGetUserDocumentsQuery();
   const [uploadDocument] = useUploadDocumentMutation();
   const [signDocument] = useSignDocumentMutation();
 
@@ -64,6 +64,7 @@ export const DocumentsPage: React.FC = () => {
   };
 
   if (isLoading) return <p>Loading documents...</p>;
+
 
   return (
     <div className="space-y-4">

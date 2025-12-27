@@ -16,7 +16,11 @@ export const entrepreneurs: Entrepreneur[] = [
     foundedYear: 2021,
     teamSize: 12,
     isOnline: true,
-    createdAt: '2023-01-15T09:24:00Z'
+    createdAt: '2023-01-15T09:24:00Z',
+     startupHistory: [],
+  investmentHistory: [],
+  preferences:''
+    
   },
   {
     id: 'e2',
@@ -33,7 +37,10 @@ export const entrepreneurs: Entrepreneur[] = [
     foundedYear: 2020,
     teamSize: 8,
     isOnline: false,
-    createdAt: '2022-03-10T14:35:00Z'
+    createdAt: '2022-03-10T14:35:00Z',
+     startupHistory: [],
+  investmentHistory: [],
+  preferences:''
   },
   {
     id: 'e3',
@@ -50,7 +57,10 @@ export const entrepreneurs: Entrepreneur[] = [
     foundedYear: 2022,
     teamSize: 5,
     isOnline: true,
-    createdAt: '2022-07-22T11:42:00Z'
+    createdAt: '2022-07-22T11:42:00Z',
+     startupHistory: [],
+  investmentHistory: [],
+  preferences:''
   },
   {
     id: 'e4',
@@ -67,7 +77,10 @@ export const entrepreneurs: Entrepreneur[] = [
     foundedYear: 2019,
     teamSize: 14,
     isOnline: false,
-    createdAt: '2021-11-05T16:18:00Z'
+    createdAt: '2021-11-05T16:18:00Z',
+     startupHistory: [],
+  investmentHistory: [],
+  preferences:''
   }
 ];
 
@@ -86,7 +99,10 @@ export const investors: Investor[] = [
     minimumInvestment: '$250K',
     maximumInvestment: '$1.5M',
     isOnline: true,
-    createdAt: '2020-05-18T10:15:00Z'
+    createdAt: '2020-05-18T10:15:00Z',
+     startupHistory: [],
+  investmentHistory: [],
+  preferences:''
   },
   {
     id: 'i2',
@@ -102,7 +118,10 @@ export const investors: Investor[] = [
     minimumInvestment: '$500K',
     maximumInvestment: '$3M',
     isOnline: false,
-    createdAt: '2019-08-30T15:40:00Z'
+    createdAt: '2019-08-30T15:40:00Z',
+     startupHistory: [],
+  investmentHistory: [],
+  preferences:''
   },
   {
     id: 'i3',
@@ -118,7 +137,10 @@ export const investors: Investor[] = [
     minimumInvestment: '$1M',
     maximumInvestment: '$5M',
     isOnline: true,
-    createdAt: '2021-02-12T09:30:00Z'
+    createdAt: '2021-02-12T09:30:00Z',
+     startupHistory: [],
+  investmentHistory: [],
+  preferences:''
   }
 ];
 

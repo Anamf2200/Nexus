@@ -6,7 +6,26 @@ interface LoginRequest {
   role: 'entrepreneur' | 'investor';
 }
 
-interface LoginResponse {
+export interface LoginResponse {
+  access_token: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    role: 'entrepreneur' | 'investor';
+  };
+}
+
+export type LoginResult = LoginResponse | { otpRequired: true; userId: string };
+
+
+
+interface VerifyOtpRequest {
+  userId: string;
+  otp: string;
+}
+
+interface VerifyOtpResponse {
   access_token: string;
   user: {
     id: string;
@@ -18,9 +37,17 @@ interface LoginResponse {
 
 export const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<LoginResponse, LoginRequest>({
+    login: builder.mutation<LoginResult, LoginRequest>({
       query: (data) => ({
         url: '/auth/login',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+
+    verifyOtp: builder.mutation<VerifyOtpResponse, VerifyOtpRequest>({
+      query: (data) => ({
+        url: '/auth/verify-otp',
         method: 'POST',
         body: data,
       }),
@@ -39,4 +66,4 @@ export const authApi = api.injectEndpoints({
   
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useVerifyOtpMutation } = authApi;

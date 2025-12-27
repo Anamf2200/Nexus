@@ -37,6 +37,12 @@ import { RootState } from './store/store';
 import VideoCall from './components/video/VideoCall';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
+import TransactionHistory from './payments/TransactionHistory';
+import DepositForm from './payments/DepositForm';
+import TransferForm from './payments/TransferForm';
+import WithdrawForm from './payments/WithdrawForm';
+import WalletPage from './payments/WalletPage';
+import { ProtectedRoute } from './ProtectedRoutes';
 
 function App() {
     const { inCall, roomId } = useSelector((state: RootState) => state.call);
@@ -52,13 +58,46 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           
           {/* Dashboard Routes */}
-       <Route path="/dashboard" element={<DashboardLayout />}>
-  <Route path="entrepreneur" element={<EntrepreneurDashboard />} />
-  <Route path="investor" element={<InvestorDashboard />} />
+     <Route path="/dashboard" element={<DashboardLayout />}>
+  {/* Protected entrepreneur dashboard */}
+  <Route
+    path="entrepreneur"
+    element={
+      <ProtectedRoute allowedRoles={['entrepreneur']}>
+        <EntrepreneurDashboard />
+      </ProtectedRoute>
+    }
+  />
+
+  {/* Protected investor dashboard */}
+  <Route
+    path="investor"
+    element={
+      <ProtectedRoute allowedRoles={['investor']}>
+        <InvestorDashboard />
+      </ProtectedRoute>
+    }
+  />
 </Route>
+
+
+
+
+
+
 <Route path='createmeeting'element={<CreateMeeting />}/>
 <Route path='mymeeting'element={<MyMeetings />}/>
 <Route path="/meetings/calendar" element={<CalendarView />} />
+<Route path="/transactionhistory" element={<TransactionHistory />} />
+<Route path="/depositform" element={<DepositForm />} />
+<Route path="/transfer" element={<TransferForm />} />
+<Route path="/withdraw" element={<WithdrawForm />} />
+<Route path="/payments" element={<WalletPage />} />
+<Route path='/messages' element={<MessagesPage/>}/>
+
+
+
+
 
 
 

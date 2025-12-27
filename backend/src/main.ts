@@ -14,13 +14,16 @@ async function bootstrap() {
     transform: true, 
   }));
 
-//  const baseUploadPath = '/app/uploads';
-//   ['documents', 'signatures'].forEach((folder) => {
-//     const path = `${baseUploadPath}/${folder}`;
-//     if (!existsSync(path)) {
-//       mkdirSync(path, { recursive: true });
-//       console.log(`Created folder: ${path}`);
-//     }
+const baseUploadPath = '/app/uploads';
+['profile'].forEach((folder) => {
+  const path = `${baseUploadPath}/${folder}`;
+  if (!existsSync(path)) {
+    mkdirSync(path, { recursive: true });
+  }
+});
+
+// app.useStaticAssets(join(__dirname, '..', 'uploads'), {
+//     prefix: '/uploads/', // This will make the files available at http://localhost:3000/uploads/...
 //   });
 
    app.enableCors({ origin: '*' });

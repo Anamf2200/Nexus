@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Document,DocumentStatus } from './schema/document_schema';
+import { sanitizeInput } from 'src/sanitzeInput';
 
 @Injectable()
 export class DocumentService {
@@ -12,7 +13,7 @@ export class DocumentService {
 
   async uploadDocument(userId: string, filePath: string, title: string) {
   return this.docModel.create({
-    title,
+    title:sanitizeInput(title),
     fileUrl: filePath, // relative path like 'documents/1678412345-file.pdf'
     uploadedBy: userId,
     status: DocumentStatus.PENDING,

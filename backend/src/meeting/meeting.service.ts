@@ -4,6 +4,7 @@ import { Meeting, MeetingStatus } from './schema/meeting_schema';
 import { Model, Types } from 'mongoose';
 import { CreateMeetingDTO } from './dto/createMeeting_dto';
 import { UpdateMeetingDTO } from './dto/updateMeeting_dto';
+import { sanitizeInput } from 'src/sanitzeInput';
 
 @Injectable()
 export class MeetingService {
@@ -28,7 +29,7 @@ export class MeetingService {
     const meeting = await this.meetingModel.create({
        organizer: new Types.ObjectId(userId),
   participants: [new Types.ObjectId(dto.participantId)],
-        title: dto.title,
+        title: sanitizeInput(dto.title) ,
         startTime: start,
         endTime: end,
         status: MeetingStatus.PENDING,

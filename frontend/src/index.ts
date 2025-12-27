@@ -2,6 +2,7 @@ export type UserRole = 'entrepreneur' | 'investor';
 
 export interface User {
   id: string;
+  _id?:string
   name: string;
   email: string;
   role: UserRole;
@@ -9,6 +10,12 @@ export interface User {
   bio: string;
   isOnline?: boolean;
   createdAt: string;
+  startupHistory:string[];
+  investmentHistory:string[];
+  preferences:string;
+  profileImage?:string;
+
+
 }
 
 export interface Entrepreneur extends User {

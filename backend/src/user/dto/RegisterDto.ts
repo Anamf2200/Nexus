@@ -1,9 +1,10 @@
 import { IsEmail, IsEnum, IsString } from "class-validator";
 
 
+
 export class RegisterDto {
 @IsString()
-name:string
+ name:string
 
   @IsEmail()
   email: string;

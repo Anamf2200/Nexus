@@ -7,6 +7,7 @@ primary_region = "sin"
 
 [http_service]
   internal_port = 3000
+    protocol = "tcp"
   force_https = true
   auto_stop_machines = "stop"
   auto_start_machines = true

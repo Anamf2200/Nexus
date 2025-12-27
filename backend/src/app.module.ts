@@ -10,6 +10,8 @@ import { SignalingGateway } from './signaling/signaling.gateway';
 import { DocumentModule } from './document/document.module';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { TransactionModule } from './transaction/transaction.module';
+import { MailModule } from './mail/mail.module';
 
 
 @Module({
@@ -19,12 +21,15 @@ import { ServeStaticModule } from '@nestjs/serve-static';
   rootPath: join('/app', 'uploads'), // points directly to the volume
       serveRoot: '/uploads',
     }),
+
     ConfigModule.forRoot({isGlobal:true}),
     MongooseModule.forRoot(process.env.MONGO_URL!),
     AuthModule,
     UserModule,
     MeetingModule,
     DocumentModule,
+    TransactionModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService, SignalingGateway],

@@ -4,11 +4,15 @@ import { Menu, X, Bell, MessageCircle, User, LogOut, Building2, CircleDollarSign
 import { useAuth } from '../../context/AuthContext';
 import { Avatar } from '../ui/Avatar';
 import { Button } from '../ui/Button';
+import { useGetProfileQuery } from '../../store/user/userApi';
+
 
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+    const { data: users, isLoading } = useGetProfileQuery();
+
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -93,12 +97,15 @@ export const Navbar: React.FC = () => {
                 </Button>
                 
                 <Link to={profileRoute} className="flex items-center space-x-2 ml-2">
-                  <Avatar
-                    src={user.avatarUrl}
-                    alt={user.name}
-                    size="sm"
-                    status={user.isOnline ? 'online' : 'offline'}
-                  />
+         <Avatar
+  src={
+    users?.profileImage
+      ? `${import.meta.env.VITE_API_URL}/uploads/${users?.profileImage}`
+      : '/default-avatar.png'
+  }
+  alt={user?.name || 'User'}
+/>
+
                   <span className="text-sm font-medium text-gray-700">{user.name}</span>
                 </Link>
               </div>
@@ -137,12 +144,18 @@ export const Navbar: React.FC = () => {
             {user ? (
               <>
                 <div className="flex items-center space-x-3 px-3 py-2">
-                  <Avatar
-                    src={user.avatarUrl}
-                    alt={user.name}
-                    size="sm"
-                    status={user.isOnline ? 'online' : 'offline'}
-                  />
+   <Avatar
+  src={
+    users?.profileImage
+      ? `${import.meta.env.VITE_API_URL}/uploads/${users.profileImage}`
+      : '/default-avatar.png'
+  }
+  alt={user.name}
+  size="sm"
+  status={user.isOnline ? 'online' : 'offline'}
+/>
+
+
                   <div>
                     <p className="text-sm font-medium text-gray-800">{user.name}</p>
                     <p className="text-xs text-gray-500 capitalize">{user.role}</p>

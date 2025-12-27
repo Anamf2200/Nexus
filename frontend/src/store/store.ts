@@ -4,12 +4,15 @@ import authReducer from './slices/authSlice';
 import { meetingApi } from './meeting/meetingApi';
 import callreducer from './call/callSlice'
 import { documentApi } from './document/documentApi';
+import { transactionApi } from './transaction/apiTransaction';
 
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
     [meetingApi.reducerPath]: meetingApi.reducer,  
    [documentApi.reducerPath]: documentApi.reducer, 
+    [transactionApi.reducerPath]: transactionApi.reducer, 
+
     auth: authReducer,
     call:callreducer
   },
@@ -17,7 +20,8 @@ export const store = configureStore({
     getDefaultMiddleware().concat(
       api.middleware,
       meetingApi.middleware,
-      documentApi.middleware // ✅ ADD THIS
+      documentApi.middleware,
+      transactionApi.middleware
     ),
   
 });
