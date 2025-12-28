@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { RootState } from './store/store';
@@ -15,17 +15,13 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   redirectPath = '/login',
 }) => {
   const { token, user } = useSelector((state: RootState) => state.auth);
-  const [unauthorized, setUnauthorized] = useState(false);
-
-  useEffect(() => {
-    if (user && allowedRoles && !allowedRoles.includes(user.role)) {
-      setUnauthorized(true);
-      alert("You do not have permission to access this page!");
-    }
-  }, [user, allowedRoles]);
 
   if (!token) return <Navigate to={redirectPath} replace />;
-  if (unauthorized) return <Navigate to="/login" replace />;
+
+  if (user && allowedRoles && !allowedRoles.includes(user.role)) {
+    alert("You do not have permission to access this page!");
+    return <Navigate to="/login" replace />;
+  }
 
   return children;
 };
