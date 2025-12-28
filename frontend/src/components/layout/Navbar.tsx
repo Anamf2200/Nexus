@@ -34,15 +34,15 @@ const { data: profile, isLoading } = useGetProfileQuery(user?.id ?? '', {
 };
 
 
-useEffect(() => {
-  if (!user) return;
+// useEffect(() => {
+//   if (!user) return;
 
-  if (user.role === 'investor') {
-    navigate('/dashboard/investor', { replace: true });
-  } else {
-    navigate('/dashboard/entrepreneur', { replace: true });
-  }
-}, [user?.role]);
+//   if (user.role === 'investor') {
+//     navigate('/dashboard/investor', { replace: true });
+//   } else {
+//     navigate('/dashboard/entrepreneur', { replace: true });
+//   }
+// }, [user?.role]);
   
   // User dashboard route based on role
  const dashboardRoute = user

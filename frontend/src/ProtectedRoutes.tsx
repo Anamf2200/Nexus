@@ -18,6 +18,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   if (!token) return <Navigate to={redirectPath} replace />;
 
   if (allowedRoles && user && !allowedRoles.includes(user.role)) {
+      alert("You do not have permission to access this page!");
     return <Navigate to="/unauthorized" replace />;
   }
 
