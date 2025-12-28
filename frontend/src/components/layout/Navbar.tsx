@@ -5,13 +5,19 @@ import { useAuth } from '../../context/AuthContext';
 import { Avatar } from '../ui/Avatar';
 import { Button } from '../ui/Button';
 import { useGetProfileQuery } from '../../store/user/userApi';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store/store';
+import { logout as clearCredentials } from '../../store/slices/authSlice';
 
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
+  
   const navigate = useNavigate();
+  const reduxUser = useSelector((state: RootState) => state.auth.user);
+const user = reduxUser;
     const { data: users, isLoading } = useGetProfileQuery();
+    const dispatch= useDispatch()
 
   
   const toggleMenu = () => {
@@ -19,14 +25,15 @@ export const Navbar: React.FC = () => {
   };
   
   const handleLogout = () => {
-    logout();
-    navigate('/login');
+    logout();               
+  dispatch(clearCredentials()); 
+  navigate('/login');
   };
   
   // User dashboard route based on role
-  const dashboardRoute = user?.role === 'entrepreneur' 
-    ? '/dashboard/entrepreneur' 
-    : '/dashboard/investor';
+ const dashboardRoute = user
+  ? `/dashboard/${user.role}`
+  : '/login';
   
   // User profile route based on role and ID
   const profileRoute = user 

@@ -23,9 +23,7 @@ export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Handle login
- // Type guard function
-// Add this in your component, after importing LoginResponse
+ 
 function isLoginResponse(res: LoginResult): res is LoginResponse {
   return (res as LoginResponse).access_token !== undefined;
 }
@@ -40,14 +38,12 @@ const handleSubmit = async (e: React.FormEvent) => {
     const res = await loginApi({ email, password, role }).unwrap();
     console.log('Login response:', res);
 
-    // ✅ OTP FLOW
     if ('otpRequired' in res && res.otpRequired === true) {
       setOtpStep(true);
       setUserIdForOtp(String(res.userId));
       return;
     }
 
-    // ✅ NORMAL LOGIN FLOW
     if ('access_token' in res && res.user) {
       dispatch(
         setCredentials({
@@ -64,7 +60,6 @@ const handleSubmit = async (e: React.FormEvent) => {
       return;
     }
 
-    // ❌ Unexpected response
     console.error('Unexpected login response:', res);
     setError('Unexpected response from server');
   } catch (err: any) {
@@ -78,7 +73,6 @@ const handleSubmit = async (e: React.FormEvent) => {
 
 
 
-  // Handle OTP verification
   const handleVerifyOtp = async () => {
   if (!userIdForOtp || !otp) {
     setError('Enter OTP');
@@ -115,7 +109,6 @@ const handleSubmit = async (e: React.FormEvent) => {
 };
 
 
-  // Fill demo credentials
   const fillDemoCredentials = (userRole: UserRole) => {
     if (userRole === 'entrepreneur') {
       setEmail('sarah@techwave.io');
