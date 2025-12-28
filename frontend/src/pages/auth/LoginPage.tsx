@@ -91,8 +91,10 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     if (res.user.role !== role) {
       setError(`You are not allowed to login as ${role}`);
-      navigate('/login')
-      return;
+      setOtpStep(false);      // ← reset OTP step
+  setOtp('');             // ← clear OTP input
+  setUserIdForOtp(null);  // ← clear userIdForOtp
+  return;
     }
 
     dispatch(
