@@ -89,6 +89,11 @@ const handleSubmit = async (e: React.FormEvent) => {
       return;
     }
 
+    if (res.user.role !== role) {
+      setError(`You are not allowed to login as ${role}`);
+      return;
+    }
+
     dispatch(
       setCredentials({
         token: res.access_token,
