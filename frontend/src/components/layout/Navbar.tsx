@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Menu, X, Bell, MessageCircle, User, LogOut, Building2, CircleDollarSign } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -8,6 +8,7 @@ import { useGetProfileQuery } from '../../store/user/userApi';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { logout as clearCredentials } from '../../store/slices/authSlice';
+import { api } from '../../store/api';
 
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,10 +26,21 @@ const user = reduxUser;
   };
   
   const handleLogout = () => {
-    logout();               
-  dispatch(clearCredentials()); 
-  navigate('/login');
-  };
+  dispatch(clearCredentials());
+  dispatch(api.util.resetApiState()); // 🔥 THIS FIXES THE BUG
+  navigate('/login', { replace: true });
+};
+
+
+useEffect(() => {
+  if (!user) return;
+
+  if (user.role === 'investor') {
+    navigate('/dashboard/investor', { replace: true });
+  } else {
+    navigate('/dashboard/entrepreneur', { replace: true });
+  }
+}, [user?.role]);
   
   // User dashboard route based on role
  const dashboardRoute = user
@@ -39,6 +51,9 @@ const user = reduxUser;
   const profileRoute = user 
     ? `/profile/${user.role}/${user.id}` 
     : '/login';
+
+
+
   
   const navLinks = [
     {
