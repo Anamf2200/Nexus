@@ -91,6 +91,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     if (res.user.role !== role) {
       setError(`You are not allowed to login as ${role}`);
+      navigate('/login')
       return;
     }
 
