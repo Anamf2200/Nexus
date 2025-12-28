@@ -18,7 +18,7 @@ async updateUser(id:string,data:UpdateProfileDto):Promise<User |null>{
     if(!user) throw new NotFoundException("User not found")
   if (data.name) data.name = sanitizeInput(data.name);
   if (data.bio) data.bio = sanitizeInput(data.bio);
-    if (data.email) data.bio = sanitizeInput(data.email);
+    if (data.email) data.email = sanitizeInput(data.email);
   if (data.startupHistory) data.startupHistory = sanitizeStringArray(data.startupHistory);
   if (data.investmentHistory) data.investmentHistory = sanitizeStringArray(data.investmentHistory);
   if (data.preferences) data.preferences = sanitizeStringArray(data.preferences);
