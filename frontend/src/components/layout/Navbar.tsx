@@ -106,7 +106,7 @@ export const Navbar: React.FC = () => {
   alt={user?.name || 'User'}
 />
 
-                  <span className="text-sm font-medium text-gray-700">{user.name}</span>
+                  <span className="text-sm font-medium text-gray-700">{users?.name || user.name}</span>
                 </Link>
               </div>
             ) : (
