@@ -17,8 +17,10 @@ export const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const reduxUser = useSelector((state: RootState) => state.auth.user);
 const user = reduxUser;
-    const { data: users, isLoading } = useGetProfileQuery();
-    const dispatch= useDispatch()
+const { data: profile, isLoading } = useGetProfileQuery(user?.id ?? '', {
+  skip: !user?.id,
+  refetchOnMountOrArgChange: true, // force refetch when user.id changes
+});    const dispatch= useDispatch()
 
   
   const toggleMenu = () => {
@@ -121,14 +123,14 @@ useEffect(() => {
                 <Link to={profileRoute} className="flex items-center space-x-2 ml-2">
          <Avatar
   src={
-    users?.profileImage
-      ? `${import.meta.env.VITE_API_URL}/uploads/${users?.profileImage}`
+    profile?.profileImage
+      ? `${import.meta.env.VITE_API_URL}/uploads/${profile?.profileImage}`
       : '/default-avatar.png'
   }
   alt={user?.name || 'User'}
 />
 
-                  <span className="text-sm font-medium text-gray-700">{users?.name || user.name}</span>
+                  <span className="text-sm font-medium text-gray-700">{profile?.name || user.name}</span>
                 </Link>
               </div>
             ) : (
@@ -168,8 +170,8 @@ useEffect(() => {
                 <div className="flex items-center space-x-3 px-3 py-2">
    <Avatar
   src={
-    users?.profileImage
-      ? `${import.meta.env.VITE_API_URL}/uploads/${users.profileImage}`
+    profile?.profileImage
+      ? `${import.meta.env.VITE_API_URL}/uploads/${profile.profileImage}`
       : '/default-avatar.png'
   }
   alt={user.name}

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { api } from '../api';
 
 interface AuthState {
   token: string | null;
@@ -39,6 +40,8 @@ const authSlice = createSlice({
       state.user = null;
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+        api.util.resetApiState();
+
     },
   },
 });
